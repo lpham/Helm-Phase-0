@@ -21,10 +21,13 @@
 <text x="702.5" y="159.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">confirmations</text>
 <rect x="30" y="190" width="375" height="46" rx="4" fill="#fdf3e3" stroke="#b7791f" stroke-width="1.4"/>
 <text x="217.5" y="210.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Reconciliation and alerts</text>
-<text x="217.5" y="224.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">chain · Onyx API · PillarsHub · Points</text>
-<rect x="420" y="190" width="370" height="46" rx="4" fill="#fdf3e3" stroke="#b7791f" stroke-width="1.4"/>
-<text x="605.0" y="210.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Admin console</text>
-<text x="605.0" y="224.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">exceptions · screening cases · Sponsor corrections</text>
+<text x="217.5" y="224.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">chain · Onyx · PillarsHub · payouts · Points</text>
+<rect x="420" y="190" width="180" height="46" rx="4" fill="#fdf3e3" stroke="#b7791f" stroke-width="1.4"/>
+<text x="510.0" y="210.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Admin and approvals</text>
+<text x="510.0" y="224.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">exceptions · holds · batches</text>
+<rect x="615" y="190" width="175" height="46" rx="4" fill="#fdf3e3" stroke="#b7791f" stroke-width="1.4"/>
+<text x="702.5" y="210.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Payout executor</text>
+<text x="702.5" y="224.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">merchant endpoint</text>
 <rect x="20" y="285" width="120" height="50" rx="4" fill="#e6f0f5" stroke="#1f6f8b" stroke-width="1.4"/>
 <text x="80.0" y="307.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Privy</text>
 <text x="80.0" y="321.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">login, wallets</text>
@@ -40,11 +43,11 @@
 <rect x="540" y="285" width="120" height="50" rx="4" fill="#e6f0f5" stroke="#1f6f8b" stroke-width="1.4"/>
 <text x="600.0" y="307.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Chatwoot Cloud</text>
 <text x="600.0" y="321.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">support</text>
-<rect x="670" y="285" width="130" height="50" rx="4" fill="#e6f0f5" stroke="#1f6f8b" stroke-width="1.4"/>
-<text x="735.0" y="307.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Onyx public API</text>
-<text x="735.0" y="321.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">read-only</text>
+<rect x="670" y="285" width="130" height="50" rx="4" fill="#eaf5ec" stroke="#2f855a" stroke-width="1.4"/>
+<text x="735.0" y="307.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Treasury Safe</text>
+<text x="735.0" y="321.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">Finance signers</text>
 <rect x="20" y="360" width="780" height="40" rx="4" fill="#eaf5ec" stroke="#2f855a" stroke-width="1.4"/>
-<text x="410.0" y="384.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Arbitrum: USDC · Onyx deposit and redeem queues · shares · valuation</text>
+<text x="410.0" y="384.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Arbitrum: USDC · Onyx deposit and redeem queues · shares · valuation · payouts</text>
 <rect x="10" y="416" width="14" height="10" fill="#eef0f3" stroke="#5b6b7f" stroke-width="1.2"/>
 <text x="30" y="425" font-size="10.5" fill="#5b6b7f">Member / business step</text>
 <rect x="160" y="416" width="14" height="10" fill="#e6f0f5" stroke="#1f6f8b" stroke-width="1.2"/>

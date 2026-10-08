@@ -20,10 +20,10 @@ def build():
     # ------------------------------------------------------------ Figure 1: capabilities
     caps = [("Join with referral", "invite, Sponsor"), ("Wallet", "log in, own keys"),
             ("Fund wallet", "USDC, one network"), ("Vault", "deposit, redeem"),
-            ("Games and Points", "no cash value"), ("Support", "in-app chat")]
+            ("Commission payout", "3 levels, USDC"), ("Games, support", "Points, chat")]
     provs = [("PillarsHub", "genealogy, plan", "buy"), ("Privy", "login, wallets", "buy"),
              ("Blockchain", "USDC transfer", "chain"), ("Enzyme Onyx", "shares, queues", "buy"),
-             ("Cyclone game", "Points service", "build"), ("Chatwoot", "conversations", "buy")]
+             ("PillarsHub + Safe", "calculate, pay", "buy"), ("Game, Chatwoot", "Points, support", "buy")]
     boxes, arrows = [], []
     for i, ((c1, c2), (p1, p2, pk)) in enumerate(zip(caps, provs)):
         x = 20 + i * 132
@@ -32,14 +32,14 @@ def build():
         arrows.append((f"c{i}.b", f"p{i}.t", None, "data"))
         arrows.append((f"p{i}.b", "helm.t", None, "data"))
     boxes.append(("helm", 20, 215, 780, 50,
-                  "Helm Web App and backend (Cyclone)\nmember record · referral sync · chain indexer · reconciliation · admin and exceptions", "build"))
+                  "Helm Web App and backend (Cyclone)\nmember record · referral sync · alpha import · payout executor · reconciliation · admin", "build"))
     render("fig-capabilities", 820, 320, boxes, arrows, LEGEND, lines=False)
 
     # ------------------------------------------------------------ Figure 2: journey
     steps = [("Invite link", "member"), ("Sign up, log in", "member"), ("Wallet created", "buy"),
              ("Fund wallet\nUSDC", "chain"), ("Read vault terms", "member"),
              ("Deposit request", "chain"), ("Position confirmed", "chain"),
-             ("Play, earn Points", "build"), ("Request Redemption", "chain")]
+             ("Sponsor earns\nCommission", "buy"), ("Payout to wallet", "chain")]
     boxes, arrows = [], []
     for i, (label, kind) in enumerate(steps[:5]):
         boxes.append((f"s{i}", 20 + i * 160, 30, 140, 46, label, kind))
@@ -62,15 +62,16 @@ def build():
         ("db", 225, 125, 180, 46, "Member DB and ledger\nreferrals · events · audit", "build"),
         ("int", 420, 125, 180, 46, "Integration workers\noutbox · retries", "build"),
         ("idx", 615, 125, 175, 46, "Chain indexer\nconfirmations", "build"),
-        ("rec", 30, 190, 375, 46, "Reconciliation and alerts\nchain · Onyx API · PillarsHub · Points", "build"),
-        ("adm", 420, 190, 370, 46, "Admin console\nexceptions · screening cases · Sponsor corrections", "build"),
+        ("rec", 30, 190, 375, 46, "Reconciliation and alerts\nchain · Onyx · PillarsHub · payouts · Points", "build"),
+        ("adm", 420, 190, 180, 46, "Admin and approvals\nexceptions · holds · batches", "build"),
+        ("payx", 615, 190, 175, 46, "Payout executor\nmerchant endpoint", "build"),
         ("privy", 20, 285, 120, 50, "Privy\nlogin, wallets", "buy"),
         ("ph", 150, 285, 120, 50, "PillarsHub\ngenealogy", "buy"),
         ("game", 280, 285, 120, 50, "Game and Points\nCyclone service", "build"),
         ("scr", 410, 285, 120, 50, "Sanctions API\naddress screening", "buy"),
         ("cw", 540, 285, 120, 50, "Chatwoot Cloud\nsupport", "buy"),
-        ("onyxapi", 670, 285, 130, 50, "Onyx public API\nread-only", "buy"),
-        ("chain", 20, 360, 780, 40, "Arbitrum: USDC · Onyx deposit and redeem queues · shares · valuation", "chain"),
+        ("onyxapi", 670, 285, 130, 50, "Treasury Safe\nFinance signers", "chain"),
+        ("chain", 20, 360, 780, 40, "Arbitrum: USDC · Onyx deposit and redeem queues · shares · valuation · payouts", "chain"),
     ], [
         ("app.b", "api.t", "Privy token", "data"),
     ], LEGEND, lines=False)
@@ -152,6 +153,19 @@ def build():
         ("a", "w", "reply to Member", "data"),
     ])
 
+    sequence("fig-flow-payout", [
+        ("h", "Helm backend", "build"), ("x", "PillarsHub", "buy"),
+        ("f", "Finance approver", "member"), ("t", "Treasury Safe", "chain"), ("b", "Builder wallet", "chain")], [
+        ("h", "x", "post eligible event (chain:tx:log)", "data"),
+        ("x", "x", "calculate 3-level Commission", "ctrl"),
+        ("f", "x", "close period, release bonuses", "ctrl"),
+        ("x", "h", "payout batch (callback token)", "data"),
+        ("h", "h", "validate token, payee status, holds", "ctrl"),
+        ("h", "t", "propose USDC transfers", "ctrl"),
+        ("f", "t", "approve and sign", "ctrl"),
+        ("t", "b", "USDC transfer", "money"),
+        ("h", "x", "report Success / Failure / Pending", "data"),
+    ])
 
 
 def main():

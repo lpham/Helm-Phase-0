@@ -35,20 +35,20 @@
 <text x="476.0" y="141.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Enzyme Onyx</text>
 <text x="476.0" y="155.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">shares, queues</text>
 <rect x="548" y="30" width="120" height="48" rx="4" fill="#eef0f3" stroke="#5b6b7f" stroke-width="1.4"/>
-<text x="608.0" y="51.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Games and Points</text>
-<text x="608.0" y="65.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">no cash value</text>
-<rect x="548" y="120" width="120" height="48" rx="4" fill="#fdf3e3" stroke="#b7791f" stroke-width="1.4"/>
-<text x="608.0" y="141.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Cyclone game</text>
-<text x="608.0" y="155.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">Points service</text>
+<text x="608.0" y="51.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Commission payout</text>
+<text x="608.0" y="65.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">3 levels, USDC</text>
+<rect x="548" y="120" width="120" height="48" rx="4" fill="#e6f0f5" stroke="#1f6f8b" stroke-width="1.4"/>
+<text x="608.0" y="141.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">PillarsHub + Safe</text>
+<text x="608.0" y="155.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">calculate, pay</text>
 <rect x="680" y="30" width="120" height="48" rx="4" fill="#eef0f3" stroke="#5b6b7f" stroke-width="1.4"/>
-<text x="740.0" y="51.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Support</text>
-<text x="740.0" y="65.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">in-app chat</text>
+<text x="740.0" y="51.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Games, support</text>
+<text x="740.0" y="65.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">Points, chat</text>
 <rect x="680" y="120" width="120" height="48" rx="4" fill="#e6f0f5" stroke="#1f6f8b" stroke-width="1.4"/>
-<text x="740.0" y="141.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Chatwoot</text>
-<text x="740.0" y="155.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">conversations</text>
+<text x="740.0" y="141.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Game, Chatwoot</text>
+<text x="740.0" y="155.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">Points, support</text>
 <rect x="20" y="215" width="780" height="50" rx="4" fill="#fdf3e3" stroke="#b7791f" stroke-width="1.4"/>
 <text x="410.0" y="237.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Helm Web App and backend (Cyclone)</text>
-<text x="410.0" y="251.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">member record · referral sync · chain indexer · reconciliation · admin and exceptions</text>
+<text x="410.0" y="251.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">member record · referral sync · alpha import · payout executor · reconciliation · admin</text>
 <rect x="10" y="286" width="14" height="10" fill="#eef0f3" stroke="#5b6b7f" stroke-width="1.2"/>
 <text x="30" y="295" font-size="10.5" fill="#5b6b7f">Member / business step</text>
 <rect x="160" y="286" width="14" height="10" fill="#e6f0f5" stroke="#1f6f8b" stroke-width="1.2"/>
