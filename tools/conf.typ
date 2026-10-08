@@ -81,7 +81,7 @@
   // heading that follows stays on the same page instead of leaving it blank.
   let after-part = state("after-part", false)
   show heading.where(level: 1): it => {
-    let is-part = it.numbering == none and repr(it.body).contains("Part ")
+    let is-part = it.numbering == none and (repr(it.body).contains("Part ") or repr(it.body).contains("Phần "))
     context {
       if after-part.get() { after-part.update(false) } else { pagebreak(weak: true) }
     }

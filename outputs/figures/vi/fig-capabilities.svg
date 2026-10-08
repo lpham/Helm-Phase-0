@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 320" width="820" height="320" font-family="Helvetica Neue, Helvetica, Arial, sans-serif"><defs><marker id="m-money" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f855a"/></marker><marker id="m-data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f6f8b"/></marker><marker id="m-ctrl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b7791f"/></marker><marker id="m-risk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c53030"/></marker></defs><rect width="100%" height="100%" fill="white"/><path d="M80.0,78 L80.0,99.0 L80.0,99.0 L80.0,120" fill="none" stroke="#1f6f8b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-data)"/>
+<path d="M80.0,168 L80.0,191.5 L410.0,191.5 L410.0,215" fill="none" stroke="#1f6f8b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-data)"/>
+<path d="M212.0,78 L212.0,99.0 L212.0,99.0 L212.0,120" fill="none" stroke="#1f6f8b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-data)"/>
+<path d="M212.0,168 L212.0,191.5 L410.0,191.5 L410.0,215" fill="none" stroke="#1f6f8b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-data)"/>
+<path d="M344.0,78 L344.0,99.0 L344.0,99.0 L344.0,120" fill="none" stroke="#1f6f8b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-data)"/>
+<path d="M344.0,168 L344.0,191.5 L410.0,191.5 L410.0,215" fill="none" stroke="#1f6f8b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-data)"/>
+<path d="M476.0,78 L476.0,99.0 L476.0,99.0 L476.0,120" fill="none" stroke="#1f6f8b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-data)"/>
+<path d="M476.0,168 L476.0,191.5 L410.0,191.5 L410.0,215" fill="none" stroke="#1f6f8b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-data)"/>
+<path d="M608.0,78 L608.0,99.0 L608.0,99.0 L608.0,120" fill="none" stroke="#1f6f8b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-data)"/>
+<path d="M608.0,168 L608.0,191.5 L410.0,191.5 L410.0,215" fill="none" stroke="#1f6f8b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-data)"/>
+<path d="M740.0,78 L740.0,99.0 L740.0,99.0 L740.0,120" fill="none" stroke="#1f6f8b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-data)"/>
+<path d="M740.0,168 L740.0,191.5 L410.0,191.5 L410.0,215" fill="none" stroke="#1f6f8b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-data)"/>
+<rect x="20" y="30" width="120" height="48" rx="4" fill="#eef0f3" stroke="#5b6b7f" stroke-width="1.4"/>
+<text x="80.0" y="51.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Join qua referral</text>
+<text x="80.0" y="65.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">invite link, Sponsor</text>
+<rect x="20" y="120" width="120" height="48" rx="4" fill="#e6f0f5" stroke="#1f6f8b" stroke-width="1.4"/>
+<text x="80.0" y="141.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">PillarsHub</text>
+<text x="80.0" y="155.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">genealogy, plan</text>
+<rect x="152" y="30" width="120" height="48" rx="4" fill="#eef0f3" stroke="#5b6b7f" stroke-width="1.4"/>
+<text x="212.0" y="51.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Wallet</text>
+<text x="212.0" y="65.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">login, tự giữ key</text>
+<rect x="152" y="120" width="120" height="48" rx="4" fill="#e6f0f5" stroke="#1f6f8b" stroke-width="1.4"/>
+<text x="212.0" y="141.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Privy</text>
+<text x="212.0" y="155.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">login, wallet</text>
+<rect x="284" y="30" width="120" height="48" rx="4" fill="#eef0f3" stroke="#5b6b7f" stroke-width="1.4"/>
+<text x="344.0" y="51.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Fund wallet</text>
+<text x="344.0" y="65.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">USDC, một network</text>
+<rect x="284" y="120" width="120" height="48" rx="4" fill="#eaf5ec" stroke="#2f855a" stroke-width="1.4"/>
+<text x="344.0" y="141.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Blockchain</text>
+<text x="344.0" y="155.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">transfer USDC</text>
+<rect x="416" y="30" width="120" height="48" rx="4" fill="#eef0f3" stroke="#5b6b7f" stroke-width="1.4"/>
+<text x="476.0" y="51.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Vault</text>
+<text x="476.0" y="65.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">deposit, redeem</text>
+<rect x="416" y="120" width="120" height="48" rx="4" fill="#e6f0f5" stroke="#1f6f8b" stroke-width="1.4"/>
+<text x="476.0" y="141.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Enzyme Onyx</text>
+<text x="476.0" y="155.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">share, queue</text>
+<rect x="548" y="30" width="120" height="48" rx="4" fill="#eef0f3" stroke="#5b6b7f" stroke-width="1.4"/>
+<text x="608.0" y="51.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Game và Points</text>
+<text x="608.0" y="65.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">không có giá trị tiền</text>
+<rect x="548" y="120" width="120" height="48" rx="4" fill="#fdf3e3" stroke="#b7791f" stroke-width="1.4"/>
+<text x="608.0" y="141.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Cyclone game</text>
+<text x="608.0" y="155.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">Points service</text>
+<rect x="680" y="30" width="120" height="48" rx="4" fill="#eef0f3" stroke="#5b6b7f" stroke-width="1.4"/>
+<text x="740.0" y="51.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Support</text>
+<text x="740.0" y="65.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">chat trong app</text>
+<rect x="680" y="120" width="120" height="48" rx="4" fill="#e6f0f5" stroke="#1f6f8b" stroke-width="1.4"/>
+<text x="740.0" y="141.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Chatwoot</text>
+<text x="740.0" y="155.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">conversation</text>
+<rect x="20" y="215" width="780" height="50" rx="4" fill="#fdf3e3" stroke="#b7791f" stroke-width="1.4"/>
+<text x="410.0" y="237.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Helm Web App và backend (Cyclone)</text>
+<text x="410.0" y="251.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">member record · referral sync · chain indexer · reconciliation · admin và exception</text>
+<rect x="10" y="286" width="14" height="10" fill="#eef0f3" stroke="#5b6b7f" stroke-width="1.2"/>
+<text x="30" y="295" font-size="10.5" fill="#5b6b7f">Member / business step</text>
+<rect x="160" y="286" width="14" height="10" fill="#e6f0f5" stroke="#1f6f8b" stroke-width="1.2"/>
+<text x="180" y="295" font-size="10.5" fill="#5b6b7f">Provider đã chốt</text>
+<rect x="310" y="286" width="14" height="10" fill="#fdf3e3" stroke="#b7791f" stroke-width="1.2"/>
+<text x="330" y="295" font-size="10.5" fill="#5b6b7f">Cyclone build</text>
+<rect x="460" y="286" width="14" height="10" fill="#eaf5ec" stroke="#2f855a" stroke-width="1.2"/>
+<text x="480" y="295" font-size="10.5" fill="#5b6b7f">On-chain</text></svg>

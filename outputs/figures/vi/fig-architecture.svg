@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 450" width="820" height="450" font-family="Helvetica Neue, Helvetica, Arial, sans-serif"><defs><marker id="m-money" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f855a"/></marker><marker id="m-data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f6f8b"/></marker><marker id="m-ctrl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b7791f"/></marker><marker id="m-risk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c53030"/></marker></defs><rect width="100%" height="100%" fill="white"/><rect x="10" y="10" width="800" height="70" rx="8" fill="none" stroke="#9aa7b6" stroke-width="1.4" stroke-dasharray="5 4"/>
+<text x="18" y="25" font-size="11.5" fill="#5b6b7f" font-weight="bold">Browser</text>
+<rect x="10" y="100" width="800" height="150" rx="8" fill="none" stroke="#9aa7b6" stroke-width="1.4" stroke-dasharray="5 4"/>
+<text x="18" y="115" font-size="11.5" fill="#5b6b7f" font-weight="bold">Helm backend (Cyclone)</text>
+<path d="M410.0,70 L410.0,97.5 L120.0,97.5 L120.0,125" fill="none" stroke="#1f6f8b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-data)"/>
+<rect x="228.0" y="89.0" width="74.0" height="17" fill="white" opacity="0.92" rx="2"/>
+<text x="265.0" y="102.0" font-size="10" text-anchor="middle" fill="#1f6f8b">Privy token</text>
+<rect x="30" y="32" width="760" height="38" rx="4" fill="#fdf3e3" stroke="#b7791f" stroke-width="1.4"/>
+<text x="410.0" y="55.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Helm Web App · Privy SDK (Member ký) · Chatwoot widget</text>
+<rect x="30" y="125" width="180" height="46" rx="4" fill="#fdf3e3" stroke="#b7791f" stroke-width="1.4"/>
+<text x="120.0" y="145.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">API và auth</text>
+<text x="120.0" y="159.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">verify Privy token</text>
+<rect x="225" y="125" width="180" height="46" rx="4" fill="#fdf3e3" stroke="#b7791f" stroke-width="1.4"/>
+<text x="315.0" y="145.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Member DB và ledger</text>
+<text x="315.0" y="159.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">referral · event · audit</text>
+<rect x="420" y="125" width="180" height="46" rx="4" fill="#fdf3e3" stroke="#b7791f" stroke-width="1.4"/>
+<text x="510.0" y="145.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Integration worker</text>
+<text x="510.0" y="159.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">outbox · retry</text>
+<rect x="615" y="125" width="175" height="46" rx="4" fill="#fdf3e3" stroke="#b7791f" stroke-width="1.4"/>
+<text x="702.5" y="145.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Chain indexer</text>
+<text x="702.5" y="159.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">confirmation</text>
+<rect x="30" y="190" width="375" height="46" rx="4" fill="#fdf3e3" stroke="#b7791f" stroke-width="1.4"/>
+<text x="217.5" y="210.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Reconciliation và alert</text>
+<text x="217.5" y="224.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">chain · Onyx API · PillarsHub · Points</text>
+<rect x="420" y="190" width="370" height="46" rx="4" fill="#fdf3e3" stroke="#b7791f" stroke-width="1.4"/>
+<text x="605.0" y="210.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Admin console</text>
+<text x="605.0" y="224.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">exception · screening case · Sponsor correction</text>
+<rect x="20" y="285" width="120" height="50" rx="4" fill="#e6f0f5" stroke="#1f6f8b" stroke-width="1.4"/>
+<text x="80.0" y="307.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Privy</text>
+<text x="80.0" y="321.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">login, wallet</text>
+<rect x="150" y="285" width="120" height="50" rx="4" fill="#e6f0f5" stroke="#1f6f8b" stroke-width="1.4"/>
+<text x="210.0" y="307.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">PillarsHub</text>
+<text x="210.0" y="321.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">genealogy</text>
+<rect x="280" y="285" width="120" height="50" rx="4" fill="#fdf3e3" stroke="#b7791f" stroke-width="1.4"/>
+<text x="340.0" y="307.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Game và Points</text>
+<text x="340.0" y="321.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">Cyclone service</text>
+<rect x="410" y="285" width="120" height="50" rx="4" fill="#e6f0f5" stroke="#1f6f8b" stroke-width="1.4"/>
+<text x="470.0" y="307.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Sanctions API</text>
+<text x="470.0" y="321.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">address screening</text>
+<rect x="540" y="285" width="120" height="50" rx="4" fill="#e6f0f5" stroke="#1f6f8b" stroke-width="1.4"/>
+<text x="600.0" y="307.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Chatwoot Cloud</text>
+<text x="600.0" y="321.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">support</text>
+<rect x="670" y="285" width="130" height="50" rx="4" fill="#e6f0f5" stroke="#1f6f8b" stroke-width="1.4"/>
+<text x="735.0" y="307.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Onyx public API</text>
+<text x="735.0" y="321.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">read-only</text>
+<rect x="20" y="360" width="780" height="40" rx="4" fill="#eaf5ec" stroke="#2f855a" stroke-width="1.4"/>
+<text x="410.0" y="384.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Arbitrum: USDC · Onyx deposit/redeem queue · share · valuation</text>
+<rect x="10" y="416" width="14" height="10" fill="#eef0f3" stroke="#5b6b7f" stroke-width="1.2"/>
+<text x="30" y="425" font-size="10.5" fill="#5b6b7f">Member / business step</text>
+<rect x="160" y="416" width="14" height="10" fill="#e6f0f5" stroke="#1f6f8b" stroke-width="1.2"/>
+<text x="180" y="425" font-size="10.5" fill="#5b6b7f">Provider đã chốt</text>
+<rect x="310" y="416" width="14" height="10" fill="#fdf3e3" stroke="#b7791f" stroke-width="1.2"/>
+<text x="330" y="425" font-size="10.5" fill="#5b6b7f">Cyclone build</text>
+<rect x="460" y="416" width="14" height="10" fill="#eaf5ec" stroke="#2f855a" stroke-width="1.2"/>
+<text x="480" y="425" font-size="10.5" fill="#5b6b7f">On-chain</text></svg>

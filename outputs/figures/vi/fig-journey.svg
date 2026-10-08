@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 230" width="820" height="230" font-family="Helvetica Neue, Helvetica, Arial, sans-serif"><defs><marker id="m-money" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f855a"/></marker><marker id="m-data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f6f8b"/></marker><marker id="m-ctrl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b7791f"/></marker><marker id="m-risk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c53030"/></marker></defs><rect width="100%" height="100%" fill="white"/><path d="M160,53.0 L170.0,53.0 L170.0,53.0 L180,53.0" fill="none" stroke="#1f6f8b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-data)"/>
+<path d="M320,53.0 L330.0,53.0 L330.0,53.0 L340,53.0" fill="none" stroke="#1f6f8b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-data)"/>
+<path d="M480,53.0 L490.0,53.0 L490.0,53.0 L500,53.0" fill="none" stroke="#1f6f8b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-data)"/>
+<path d="M640,53.0 L650.0,53.0 L650.0,53.0 L660,53.0" fill="none" stroke="#1f6f8b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-data)"/>
+<path d="M730.0,76 L730.0,103.0 L730.0,103.0 L730.0,130" fill="none" stroke="#2f855a" stroke-width="1.5" marker-end="url(#m-money)"/>
+<path d="M660,153.0 L650.0,153.0 L650.0,153.0 L640,153.0" fill="none" stroke="#1f6f8b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-data)"/>
+<path d="M500,153.0 L490.0,153.0 L490.0,153.0 L480,153.0" fill="none" stroke="#1f6f8b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-data)"/>
+<path d="M340,153.0 L330.0,153.0 L330.0,153.0 L320,153.0" fill="none" stroke="#1f6f8b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#m-data)"/>
+<rect x="20" y="30" width="140" height="46" rx="4" fill="#eef0f3" stroke="#5b6b7f" stroke-width="1.4"/>
+<text x="90.0" y="57.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Invite link</text>
+<rect x="180" y="30" width="140" height="46" rx="4" fill="#eef0f3" stroke="#5b6b7f" stroke-width="1.4"/>
+<text x="250.0" y="57.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Signup, login</text>
+<rect x="340" y="30" width="140" height="46" rx="4" fill="#e6f0f5" stroke="#1f6f8b" stroke-width="1.4"/>
+<text x="410.0" y="57.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Tạo wallet</text>
+<rect x="500" y="30" width="140" height="46" rx="4" fill="#eaf5ec" stroke="#2f855a" stroke-width="1.4"/>
+<text x="570.0" y="50.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Fund wallet</text>
+<text x="570.0" y="64.0" font-size="10.5" text-anchor="middle" fill="#5b6b7f" font-weight="normal">USDC</text>
+<rect x="660" y="30" width="140" height="46" rx="4" fill="#eef0f3" stroke="#5b6b7f" stroke-width="1.4"/>
+<text x="730.0" y="57.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Đọc vault terms</text>
+<rect x="660" y="130" width="140" height="46" rx="4" fill="#eaf5ec" stroke="#2f855a" stroke-width="1.4"/>
+<text x="730.0" y="157.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Deposit request</text>
+<rect x="500" y="130" width="140" height="46" rx="4" fill="#eaf5ec" stroke="#2f855a" stroke-width="1.4"/>
+<text x="570.0" y="157.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Position confirmed</text>
+<rect x="340" y="130" width="140" height="46" rx="4" fill="#fdf3e3" stroke="#b7791f" stroke-width="1.4"/>
+<text x="410.0" y="157.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Chơi game, nhận Points</text>
+<rect x="180" y="130" width="140" height="46" rx="4" fill="#eaf5ec" stroke="#2f855a" stroke-width="1.4"/>
+<text x="250.0" y="157.0" font-size="12.5" text-anchor="middle" fill="#1b2a41" font-weight="bold">Request Redemption</text>
+<rect x="10" y="196" width="14" height="10" fill="#eef0f3" stroke="#5b6b7f" stroke-width="1.2"/>
+<text x="30" y="205" font-size="10.5" fill="#5b6b7f">Member / business step</text>
+<rect x="160" y="196" width="14" height="10" fill="#e6f0f5" stroke="#1f6f8b" stroke-width="1.2"/>
+<text x="180" y="205" font-size="10.5" fill="#5b6b7f">Provider đã chốt</text>
+<rect x="310" y="196" width="14" height="10" fill="#fdf3e3" stroke="#b7791f" stroke-width="1.2"/>
+<text x="330" y="205" font-size="10.5" fill="#5b6b7f">Cyclone build</text>
+<rect x="460" y="196" width="14" height="10" fill="#eaf5ec" stroke="#2f855a" stroke-width="1.2"/>
+<text x="480" y="205" font-size="10.5" fill="#5b6b7f">On-chain</text></svg>

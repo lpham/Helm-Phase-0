@@ -3,9 +3,11 @@
 -- keeps the Mermaid text so it stays editable and renders on GitHub.
 
 local ext = "svg"
+local dir = "figures"
 
 function Meta(meta)
   if meta["figure-ext"] then ext = pandoc.utils.stringify(meta["figure-ext"]) end
+  if meta["figure-dir"] then dir = pandoc.utils.stringify(meta["figure-dir"]) end
 end
 
 function CodeBlock(block)
@@ -15,7 +17,7 @@ function CodeBlock(block)
     io.stderr:write("mermaid block without #id; left as code\n")
     return nil
   end
-  local path = "figures/" .. id .. "." .. ext
+  local path = dir .. "/" .. id .. "." .. ext
   local caption = block.attributes["caption"] or ""
   local img = pandoc.Image({}, path, "", { width = "100%" })
   return pandoc.Figure(pandoc.Plain({ img }), { pandoc.Plain(pandoc.Str(caption)) },

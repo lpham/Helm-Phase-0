@@ -2,3 +2,4 @@
 outputs/figures/*.png
 outputs/.build.typ
 outputs/.conf.typ
+outputs/figures/vi/*.png
