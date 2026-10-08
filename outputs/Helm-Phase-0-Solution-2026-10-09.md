@@ -51,6 +51,7 @@ The stack is confirmed: **PillarsHub** (MLM core), **Privy** (login and wallets)
 
 - **Cyclone builds only the glue:** the member experience, one backend that connects the providers, a ledger of identities, referrals and events, the payout executor, and the reconciliation and admin views that make every money flow auditable.
 - **Each provider does what it already does:** Privy runs login and wallets; PillarsHub stores the genealogy and calculates Commissions with its existing Unilevel plan; Onyx issues vault shares and runs deposit and redemption queues; Chatwoot handles conversations.
+- **MLM screens are reused, not rebuilt.** Genealogy browsing, Sponsor and placement edits, plan configuration, bonus review, period close and bonus release are done in the PillarsHub Portal. Builders get the essentials in Helm plus an "Open full back office" link into PillarsHub's back office through single sign-on. Verified (SSO). Helm builds only what PillarsHub does not have.
 - **Payouts reuse PillarsHub's batch mechanism.** PillarsHub sends approved payout batches to a merchant endpoint that Helm builds; Helm pays USDC from a Business-controlled multisig treasury and reports the result back. Verified. No payment provider is needed.
 - **Direct crypto funding** keeps payment-provider onboarding off the critical path.
 
@@ -91,7 +92,8 @@ flowchart TB
 | Wallet funding | Blockchain (USDC transfer to the Member's address) | Address display, confirmation tracking, screening | Feasible |
 | Vault deposit and redemption | Enzyme Onyx (allowlisted deposit queue, redemption queue, shares, public read API) | Terms screens, transaction flows, status tracking, allowlist updates | Feasible with configuration; **live use blocked** pending strategy, MLA and ownership |
 | Simple Commission payout | PillarsHub (real-time calculation, bonus release, payout batches to a custom merchant) | Eligible-event posting, payout executor, treasury proposals, status callback, statements | Feasible with configuration and custom work; **blocked** pending approved Commission basis |
-| Team view | PillarsHub tree and bonus data | Permission-filtered direct-team view in Helm | Feasible |
+| Team view and Builder back office | PillarsHub back office (tree, reports, bonus detail) through SSO | Essentials in Helm (referral link, team counts, earnings summary, payouts) and the SSO hand-off | Feasible |
+| MLM administration | PillarsHub Portal (genealogy, placements, plan, bonuses, period close, release) | Deep links by Member ID; change detection and reconciliation | Feasible |
 | Games and Points | Cyclone Tap Prediction and points service | Account linking, verified events, Points display | **Feasible pending** game API documentation |
 | Support | Chatwoot Cloud (web widget with identity validation) | Widget, identity signing, agent context view in Helm admin | Feasible |
 | Operations | Provider dashboards (Onyx Admin App, PillarsHub Portal, Chatwoot) | Helm admin: exceptions, approvals, reconciliation, audit log | Feasible |
@@ -121,7 +123,7 @@ flowchart LR
 | Privy embedded wallets with sponsored gas | Server wallets, automated strategies, policies |
 | Referral capture, Customer and Builder status, full genealogy in PillarsHub, alpha import | Self-service or bulk placement moves; the governed placement window (GEN-04 to GEN-06) |
 | **Simple Commission:** existing three-level Unilevel plan, one approved eligible event, USDC payout in Finance-approved batches | Ranks, qualification rules, matching or leadership bonuses, campaigns, contests |
-| Direct-team view, referral link, earnings states and statements | Deep team analytics, leader contact tools, CRM |
+| Referral link, team counts, earnings summary and payouts in Helm; full back office in PillarsHub via SSO | Custom Helm versions of PillarsHub screens; deep team analytics, leader contact tools, CRM |
 | Existing Tap Prediction game and Points (no cash value) | Points redemption for value, new games, tokens |
 | Chatwoot web chat with agent context; FAQ and runbooks | Telegram and WhatsApp support; AI agent |
 | Sanctions screening of wallet addresses; country eligibility; Member terms | Full KYC unless counsel requires it (decision D6) |
@@ -178,9 +180,9 @@ What can realistically be in place 30 days after kickoff, by how much depends on
 
 | Week | Engineering | Business, Finance and counsel |
 |---|---|---|
-| 1 | Access, environments, Privy login and wallet, member and referral model, PillarsHub staging sync, Onyx Sepolia deposit | Decisions D1–D12; vault strategy and Manager; MLA; alpha records; Commission basis drafting; counsel engaged |
+| 1 | Access, environments, Privy login and wallet, member and referral model, PillarsHub staging sync, Onyx Sepolia deposit | Decisions D1–D13; vault strategy and Manager; MLA; alpha records; Commission basis drafting; counsel engaged |
 | 2 | Thin slice on test networks; alpha import dry run; event pipeline; payout endpoint and Safe proposals on testnet | Member and Builder terms; allowed countries; MLA signature |
-| 3 | Team view, statements, admin approvals, screening, support context; preregistration release candidate | Counsel answers; production vault deployment; Commission basis approved |
+| 3 | Builder essentials and PillarsHub SSO, admin approvals, screening, support context; preregistration release candidate | Counsel answers; production vault deployment; Commission basis approved |
 | 4 | Preregistration go-live; alpha cutover; load and recovery checks; security review fixes; real-funds rehearsal | Security review; operations rehearsal; go/no-go for the capped pilot |
 
 **Recommended day-30 milestone for the meeting:** *preregistration live, alpha community imported, genealogy locked, vault and payout proven on test networks.* Run the tier-3 conditions in parallel so real deposits open as soon as they clear, and approve the Commission basis early so the first payout is not delayed further.
@@ -229,6 +231,7 @@ What can realistically be in place 30 days after kickoff, by how much depends on
 | D10 | Placement window promised in the field call | Not in the Pilot; publish the policy first, then enable the governed workflow (GEN-04 to GEN-06) | Avoids building moves before the rules exist |
 | D11 | Payout treasury and approvers | Safe multisig owned by Business; Finance approves each batch; payouts only to the Builder's Helm wallet | Payout controls (PAY-01 to PAY-04) |
 | D12 | PillarsHub status | Confirmed per Business; validate it with Terrel's proof scenarios T01–T06 in staging, not a new selection | Reconciles Terrel's "candidate" wording with the confirmed stack |
+| D13 | MLM admin and Builder back office | Use the PillarsHub Portal and back office (SSO) instead of building them in Helm; Helm shows essentials only | Saves weeks of UI work; needs PillarsHub's Portal approvals and SSO token handling confirmed |
 
 # Part II: Technical implementation {.unnumbered}
 
@@ -247,7 +250,7 @@ Terrel's *HELM Community Technology Requirements v0.2* (6 October 2026) defines 
 | Qualification and rank | QUAL-01 to QUAL-03 | **Disabled.** No ranks in the simple plan; QUAL-03 applies only when rank progress is promised | Scope table |
 | Earnings audit | AUD-01 to AUD-03 | **In scope.** Explain each earning from source event to payout; preserve corrections; period statements separating vault performance from referral earnings | FR-18, FR-19 |
 | Rewards | REW-01 to REW-03 | Points only; no redemption, promotional credit or cash conversion | FR-11; decision D7 |
-| Builder back office | BO-01, BO-02, BO-04 | **In scope.** Referral link, permitted team data, earnings states, statements, dispute request; mobile web and release language | FR-16, FR-19 |
+| Builder back office | BO-01, BO-02, BO-04 | **In scope.** Essentials in Helm (referral link, team counts, earnings summary, payouts, dispute request); detailed statements and tree in PillarsHub's back office via SSO; mobile web and release language (PillarsHub back-office mobile behaviour TBD) | FR-16, FR-19 |
 | Team visibility | TEAM-01, TEAM-02 | **In scope, minimum.** Direct team and counts; no access to another branch or anyone's balances, trades or support cases | FR-16 |
 | Team tools | TEAM-03 to TEAM-05 | Basic welcome step only (TEAM-05 Pilot); search, contact and automation deferred | Scope table |
 | Campaigns | CAMP-01 | **In scope.** Referral link attribution, precedence and invalid referrals; CAMP-02 to CAMP-04 disabled | FR-3 |
@@ -304,10 +307,10 @@ Terrel's *HELM Community Technology Requirements v0.2* (6 October 2026) defines 
 | FR-13 | Admin and reconciliation | Separate view, configure, correct, approve and release roles (ADM-01); daily reconciliation of genealogy, funding, vault positions, Commissions, payouts and Points; mismatches in an exception queue with audit trail |
 | FR-14 | Reporting | Separate definitions for customers, Builders, deposits, Commissions, liabilities and payouts, with cutoffs and freshness shown and no double counting (BI-01, BI-02) |
 | FR-15 | Customer and Builder status, preregistration | Prospect, preregistered, verified and enrolled states tracked separately; Builder enrollment explicit and versioned; preregistered people cannot receive earnings (ID-04); restricted capabilities blocked by country and agreement version (ID-03, REC-02) |
-| FR-16 | Team view | Builder sees referral link, direct team members and counts with freshness; cannot see another branch or anyone's balances, positions, trades or support cases (TEAM-01, TEAM-02, BO-01) |
+| FR-16 | Team view | Builder sees referral link and direct-team counts with freshness in Helm, and opens PillarsHub's back office through SSO for the tree and reports; neither view exposes another branch or anyone's balances, positions, trades or support cases (TEAM-01, TEAM-02, BO-01; PillarsHub visibility settings to confirm) |
 | FR-17 | Post eligible events for Commission | Only the approved eligible event type is posted, after on-chain confirmation, with a stable external ID; replays create one obligation; reversals create a traceable adjustment (COMP-01, COMP-02) |
 | FR-18 | Simple payout | Released bonuses arrive as a PillarsHub batch at Helm's merchant endpoint; Finance approves; Helm proposes treasury transactions to the Builder's own Helm wallet only; each payment is reported back as Success, Failure or Pending with the transaction reference; a timeout and retry produce one payment or an explicit exception (PAY-01 to PAY-03, T06) |
-| FR-19 | Earnings statement and dispute | Builder sees calculated, pending, held, payable and paid amounts with reasons (COMP-03); period statement separates vault performance from referral earnings (AUD-03); a dispute request carries the earning ID (BO-02) |
+| FR-19 | Earnings statement and dispute | Builder sees an earnings summary and payouts in Helm, with detailed bonus statements in PillarsHub's back office; states shown are calculated, pending, held, payable and paid with reasons (COMP-03); period statement separates vault performance from referral earnings (AUD-03); a dispute request carries the earning ID (BO-02) |
 | FR-20 | Alpha community import | Alpha members imported Sponsors-first with original dates and provenance "import"; counts and edges reconcile; exceptions resolved or approved; rollback rehearsed (GEN-03, IMP-02, T01) |
 
 ## Operational requirements
@@ -364,7 +367,8 @@ flowchart TB
 | Integration workers | Outbox jobs to PillarsHub, game service, screening and allowlist; retries and dead letters | No provider offers idempotency keys across all calls |
 | Chain indexer | Indexes USDC transfers to Member wallets and Onyx queue, shares and valuation events at confirmation depth | Privy production webhooks need Enterprise; Onyx has no webhooks. Verified |
 | Reconciliation | Daily checks against chain, Onyx API, PillarsHub tree and Points | Provider data can drift; must be provable |
-| Admin console and approvals | Exceptions, screening cases, allowlist status, Sponsor corrections, import exceptions, payout batch review and holds, all with maker-checker | Approval workflows (ADM-02) span several providers |
+| Admin console and approvals | Helm-owned data only: exceptions, screening cases, allowlist status, import exceptions, payout execution and holds, with maker-checker; deep links to the PillarsHub Portal for genealogy, plan, bonuses and release | PillarsHub Portal covers MLM administration; Helm covers identity, wallets and money movement |
+| PillarsHub Portal and back office (reused) | Genealogy browsing, Sponsor and placement edits, plan, bonuses, period close, release, MLM reports; Builder back office through SSO | Not custom: reused to save build time |
 | Payout executor | Receives PillarsHub payout batches at a custom merchant endpoint; validates the callback token; checks payees and holds; proposes USDC transfers to the treasury multisig; reports Success, Failure or Pending per payment | PillarsHub calculates and releases but does not move crypto; no payment provider in scope |
 | Alpha import tool | Loads alpha members Sponsors-first, reconciles counts and edges, reports exceptions, supports rollback | No bulk import API in PillarsHub. Verified |
 
@@ -562,7 +566,7 @@ Only data with an identified purpose is collected. No Sponsor or member data is 
 - **Self-referral:** rejected at capture (same member, same wallet, same verified email or phone).
 - **Invalid or missing Sponsor:** attach to the company root account with provenance "no sponsor" and flag for review (decision D8).
 - **Cycles and duplicates:** impossible for new Members; checked on every correction and import (GEN-02).
-- **Sponsor and placement changes:** never self-service in the Pilot. Admin-only, with reason, consent reference, second approval and audit entry, then a PillarsHub node or placement update and read-back. The governed placement window (preview, consent, deadline, notifications; GEN-04 to GEN-06) is enabled only after the policy is approved (decision D10). Customer movements stay disabled in the PillarsHub tree so the two systems cannot drift.
+- **Sponsor and placement changes:** never self-service in the Pilot. Made by authorised admins in the PillarsHub Portal, with reason and consent reference recorded in a Helm case. Helm detects every change through `Node/Updated` webhooks and nightly reconciliation, and opens a case for any change without an approved request. Whether the Portal itself enforces a second approver and keeps an audit log is not verified; if it does not, the approval is recorded in Helm before the Portal edit (ADM-02). The governed placement window (preview, consent, deadline, notifications; GEN-04 to GEN-06) is enabled only after the policy is approved (decision D10). Customer movements stay disabled in the PillarsHub tree so the two systems cannot drift.
 - **Account merges:** admin process; keep the earliest accepted edge; re-point child edges with audit entries; retire the duplicate identity (ADM-04).
 - **Alpha community import:** Sponsors before children, with original signup dates and provenance "import"; record by record because there is no bulk API. Verified. Reconcile counts and edges, resolve or approve every exception, and rehearse rollback before cutover (GEN-03, IMP-02).
 
@@ -590,12 +594,12 @@ Only data with an identified purpose is collected. No Sponsor or member data is 
 |---|---|---|
 | **Start immediately** | App shell; Privy login and embedded wallet; member DB with Customer and Builder states; referral capture and validation; PillarsHub staging sync with read-back; alpha import tool on sample data; event pipeline and source posting (staging only); payout merchant endpoint and Safe proposals on testnet; chain indexer; Onyx deposit and redemption on Sepolia; Chatwoot widget; admin skeleton with roles; screening hook; CI, environments, secrets | Provider test access; alpha sample data |
 | **Thin slice (weeks 1–3)** | End-to-end demo on test networks: signup → referral → deposit → test Commission → test payout batch → Redemption; one game-to-Points flow | Game API docs |
-| **Before live funds and payouts** | Vault terms and disclosures; allowlist automation; team view and statements; Builder enrollment and terms; payout approvals, holds and reporting; alpha import rehearsal and reconciliation; support agent view, FAQs and runbooks; reconciliation jobs and alerts; country eligibility; production environments; load and recovery tests; security review fixes; operations rehearsal | Strategy, MLA, ownership, Commission basis, legal answers |
+| **Before live funds and payouts** | Vault terms and disclosures; allowlist automation; Builder essentials and PillarsHub SSO hand-off; Builder enrollment and terms; payout approvals, holds and reporting; alpha import rehearsal and reconciliation; support agent view, FAQs and runbooks; reconciliation jobs and alerts; country eligibility; production environments; load and recovery tests; security review fixes; operations rehearsal | Strategy, MLA, ownership, Commission basis, legal answers |
 | **Deferrable (disabled)** | Governed placement window; ranks and qualification; campaigns; integrated top-up; additional chains and assets; Telegram and WhatsApp; commercial transaction monitoring; native mobile | Business demand and approved rules |
 
 ## Critical path
 
-1. Meeting decisions D1–D12.
+1. Meeting decisions D1–D13.
 2. **Vault readiness:** strategy and Manager → vault configuration (asset, async queue, external allowlist, non-transferable shares, fees) → MLA signature → production deployment → ownership handover to the Business multisig.
 3. **Commission basis and plan proof:** approved eligible event, rates, period and hold → PillarsHub configuration → Finance expected results match (T02).
 4. **Alpha data:** records received → dry run → reconciliation → approved exceptions → rehearsed cutover (T01).
@@ -631,6 +635,7 @@ All must be true; none is waived to meet a date.
 - **Upgrade risk.** Enzyme's global owner can upgrade all vault contracts; the audit describes this role as able to "fully drain the system", and no timelock was found. Verified. The MLA must cover notice and governance.
 - **Gas sponsorship.** Privy's native sponsorship upgrades Member wallets with EIP-7702; the delegation contract is part of the security review. Verified.
 - **Unsigned PillarsHub webhooks.** Treat them as hints and re-fetch through the API. Verified.
+- **PillarsHub SSO.** Helm's backend mints a PillarsHub user token and opens the back office with the token in the URL query string. Verified. Tokens in URLs can leak through browser history and logs; confirm token lifetime and single use with PillarsHub, and open the back office in a new tab without referrer headers.
 - **Payout callbacks.** PillarsHub authenticates payout batches with a callback token that Helm validates against PillarsHub's token endpoint before acting. Verified. The payout executor holds no signing key; it only proposes Safe transactions.
 - **Test and production separation** for every provider, with separate credentials and no production keys on developer machines.
 
@@ -718,6 +723,8 @@ Detailed notes with every source and quotation are in `work/notes/01-pillarshub.
 10. Custom money-out merchant: can the batch carry a custom currency code such as USDC; retry behaviour when Helm reports Pending; how Failure is re-released; per-payment limits?
 11. Can Helm's three-level Unilevel staging plan be configured with Finance's rates, period, hold and minimum, and who changes it (the plan is read-only through the API)?
 12. Customer types or statuses for Customer versus Builder, and for preregistered people who must not earn.
+13. Does the Portal support role-based approvals (second approver) and an audit log for Sponsor and placement changes, bonus edits and releases?
+14. SSO user tokens: lifetime, single use, and whether a POST-based or short-lived exchange is available instead of a token in the URL. Can back-office visibility be limited so a Builder never sees another branch or balances, and how does the back office behave on mobile?
 
 **Privy**
 

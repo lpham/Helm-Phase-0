@@ -51,6 +51,7 @@ The stack is confirmed: **PillarsHub** (MLM core), **Privy** (login and wallets)
 
 - **Cyclone builds only the glue:** the member experience, one backend that connects the providers, a ledger of identities, referrals and events, the payout executor, and the reconciliation and admin views that make every money flow auditable.
 - **Each provider does what it already does:** Privy runs login and wallets; PillarsHub stores the genealogy and calculates Commissions with its existing Unilevel plan; Onyx issues vault shares and runs deposit and redemption queues; Chatwoot handles conversations.
+- **MLM screens are reused, not rebuilt.** Genealogy browsing, Sponsor and placement edits, plan configuration, bonus review, period close and bonus release are done in the PillarsHub Portal. Builders get the essentials in Helm plus an "Open full back office" link into PillarsHub's back office through single sign-on. Verified (SSO). Helm builds only what PillarsHub does not have.
 - **Payouts reuse PillarsHub's batch mechanism.** PillarsHub sends approved payout batches to a merchant endpoint that Helm builds; Helm pays USDC from a Business-controlled multisig treasury and reports the result back. Verified. No payment provider is needed.
 - **Direct crypto funding** keeps payment-provider onboarding off the critical path.
 
@@ -65,7 +66,7 @@ The stack is confirmed: **PillarsHub** (MLM core), **Privy** (login and wallets)
 5. **Legal applicability review** of the operating entity, launch countries, KYC tier, vault terms and the referral payout model.
 6. **Provider acceptance of the business model**, in writing, from Privy, Enzyme and PillarsHub.
 
-**Earliest credible schedule (estimate, not a commitment):** an end-to-end test slice including a test payout about 3 weeks after kickoff; a controlled launch with deposits in about **8–12 weeks**, provided vault, licence, Commission-basis and legal answers arrive by around week 6. The first live payout follows the first approved period close and hold. Section 6 gives the assumptions.
+**Earliest credible schedule (estimate, not a commitment):** an end-to-end test slice including a test payout about 3 weeks after kickoff; a controlled launch with deposits in about **8–12 weeks**, provided vault, licence, Commission-basis and legal answers arrive by around week 6. The first live payout follows the first approved period close and hold. Section 6 gives the assumptions, and section 6.1 sets out what is achievable within 30 days.
 
 # Confirmed stack: what each system provides
 
@@ -91,7 +92,8 @@ flowchart TB
 | Wallet funding | Blockchain (USDC transfer to the Member's address) | Address display, confirmation tracking, screening | Feasible |
 | Vault deposit and redemption | Enzyme Onyx (allowlisted deposit queue, redemption queue, shares, public read API) | Terms screens, transaction flows, status tracking, allowlist updates | Feasible with configuration; **live use blocked** pending strategy, MLA and ownership |
 | Simple Commission payout | PillarsHub (real-time calculation, bonus release, payout batches to a custom merchant) | Eligible-event posting, payout executor, treasury proposals, status callback, statements | Feasible with configuration and custom work; **blocked** pending approved Commission basis |
-| Team view | PillarsHub tree and bonus data | Permission-filtered direct-team view in Helm | Feasible |
+| Team view and Builder back office | PillarsHub back office (tree, reports, bonus detail) through SSO | Essentials in Helm (referral link, team counts, earnings summary, payouts) and the SSO hand-off | Feasible |
+| MLM administration | PillarsHub Portal (genealogy, placements, plan, bonuses, period close, release) | Deep links by Member ID; change detection and reconciliation | Feasible |
 | Games and Points | Cyclone Tap Prediction and points service | Account linking, verified events, Points display | **Feasible pending** game API documentation |
 | Support | Chatwoot Cloud (web widget with identity validation) | Widget, identity signing, agent context view in Helm admin | Feasible |
 | Operations | Provider dashboards (Onyx Admin App, PillarsHub Portal, Chatwoot) | Helm admin: exceptions, approvals, reconciliation, audit log | Feasible |
@@ -121,7 +123,7 @@ flowchart LR
 | Privy embedded wallets with sponsored gas | Server wallets, automated strategies, policies |
 | Referral capture, Customer and Builder status, full genealogy in PillarsHub, alpha import | Self-service or bulk placement moves; the governed placement window (GEN-04 to GEN-06) |
 | **Simple Commission:** existing three-level Unilevel plan, one approved eligible event, USDC payout in Finance-approved batches | Ranks, qualification rules, matching or leadership bonuses, campaigns, contests |
-| Direct-team view, referral link, earnings states and statements | Deep team analytics, leader contact tools, CRM |
+| Referral link, team counts, earnings summary and payouts in Helm; full back office in PillarsHub via SSO | Custom Helm versions of PillarsHub screens; deep team analytics, leader contact tools, CRM |
 | Existing Tap Prediction game and Points (no cash value) | Points redemption for value, new games, tokens |
 | Chatwoot web chat with agent context; FAQ and runbooks | Telegram and WhatsApp support; AI agent |
 | Sanctions screening of wallet addresses; country eligibility; Member terms | Full KYC unless counsel requires it (decision D6) |
@@ -152,6 +154,40 @@ Delivery is organised so that engineering never waits for provider or legal answ
 | 2 – MVP build | Weeks 3–8 | Member UI with team view and statements, admin approvals, alpha import rehearsal, reconciliation, screening, terms, support context, monitoring | Feature-complete on test networks |
 | 3 – Production readiness | Weeks 6–10 (overlaps) | Production vault deployed and handed over; plan configured and proven with Finance examples; treasury multisig set up; security review; legal sign-off; alpha import and payout rehearsal | Launch gate (section 15) passed |
 | 4 – Controlled launch | From about week 8–12 | Invitation-only cohort with exposure limits; first payout after first period close and hold | Agreed checks pass, then expand |
+
+## 30-day plan
+
+What can realistically be in place 30 days after kickoff, by how much depends on engineering alone and how much on decisions outside it. All items are estimates for a team of five to six engineers with provider access in week 1.
+
+| Tier | What is live at day 30 | Depends on |
+|---|---|---|
+| **1. Certain** (engineering only) | Full journey on test networks: signup → wallet → referral → USDC funding → Vault Deposit → position → Commission calculation → **test payout batch from the treasury Safe** → Redemption. Alpha import tool run and reconciled on sample data. Admin roles, maker-checker, daily reconciliation, Chatwoot | Provider test access; alpha sample data |
+| **2. Likely, if Business decides in week 1** | **Preregistration live with real users, no money yet:** signup, wallet, referral link, genealogy in PillarsHub production, alpha community imported with original Sponsors and dates, direct-team view, support. Matches Terrel's release sequence and ID-04: preregistered people keep attribution and cannot earn | Member terms and privacy notice; allowed countries; alpha records; PillarsHub production slot (Tuesday to Thursday) |
+| **3. Possible around day 30–35, only if every external item lands on time** | **Capped real-funds pilot:** an invited cohort (for example alpha leaders) with per-Member and total limits deposits into the production vault | See the conditions below |
+| **4. Not realistic within 30 days** | First real Commission payout; placement window, ranks and campaigns; full KYC if counsel requires it (adds about 1–2 weeks) | Payout needs an approved basis plus one period close and hold: about **day 45–60** with a weekly period and a short hold |
+
+**Conditions for tier 3:**
+
+| Condition | Needed by |
+|---|---|
+| Vault strategy and Manager appointed; Owner multisig set up | Week 1 |
+| Enzyme MLA signed; production vault deployed and handed over | Signed in weeks 1–2; deployed by week 3 (Enzyme publishes no lead time) |
+| Counsel confirms entity, launch countries, KYC tier and vault terms | Week 3 |
+| Focused security review of vault configuration, keys and integration | Week 4 |
+| Operations rehearsal with a small operator-funded amount | Week 4 |
+
+**Week by week:**
+
+| Week | Engineering | Business, Finance and counsel |
+|---|---|---|
+| 1 | Access, environments, Privy login and wallet, member and referral model, PillarsHub staging sync, Onyx Sepolia deposit | Decisions D1–D13; vault strategy and Manager; MLA; alpha records; Commission basis drafting; counsel engaged |
+| 2 | Thin slice on test networks; alpha import dry run; event pipeline; payout endpoint and Safe proposals on testnet | Member and Builder terms; allowed countries; MLA signature |
+| 3 | Builder essentials and PillarsHub SSO, admin approvals, screening, support context; preregistration release candidate | Counsel answers; production vault deployment; Commission basis approved |
+| 4 | Preregistration go-live; alpha cutover; load and recovery checks; security review fixes; real-funds rehearsal | Security review; operations rehearsal; go/no-go for the capped pilot |
+
+**Recommended day-30 milestone for the meeting:** *preregistration live, alpha community imported, genealogy locked, vault and payout proven on test networks.* Run the tier-3 conditions in parallel so real deposits open as soon as they clear, and approve the Commission basis early so the first payout is not delayed further.
+
+## Assumptions and running costs
 
 **Assumptions behind these ranges:** a Cyclone team of about five to six engineers plus QA and a delivery lead; provider access and alpha sample data in week 1; game API documentation by week 2; vault strategy, MLA, ownership, Commission basis and legal answers by around week 6. PillarsHub only launches clients Tuesday to Thursday, 9:00–16:00 US Mountain Time. Verified. No date in this table is a commitment.
 
@@ -195,4 +231,5 @@ Delivery is organised so that engineering never waits for provider or legal answ
 | D10 | Placement window promised in the field call | Not in the Pilot; publish the policy first, then enable the governed workflow (GEN-04 to GEN-06) | Avoids building moves before the rules exist |
 | D11 | Payout treasury and approvers | Safe multisig owned by Business; Finance approves each batch; payouts only to the Builder's Helm wallet | Payout controls (PAY-01 to PAY-04) |
 | D12 | PillarsHub status | Confirmed per Business; validate it with Terrel's proof scenarios T01–T06 in staging, not a new selection | Reconciles Terrel's "candidate" wording with the confirmed stack |
+| D13 | MLM admin and Builder back office | Use the PillarsHub Portal and back office (SSO) instead of building them in Helm; Helm shows essentials only | Saves weeks of UI work; needs PillarsHub's Portal approvals and SSO token handling confirmed |
 

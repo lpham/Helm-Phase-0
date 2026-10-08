@@ -51,6 +51,7 @@ Stack đã được chốt: **PillarsHub** (MLM core), **Privy** (login và wall
 
 - **Cyclone chỉ build phần kết nối:** trải nghiệm Member, một backend kết nối các provider, một ledger lưu identity, Referral và event, payout executor, cùng các view reconciliation và admin để mọi dòng tiền đều audit được.
 - **Mỗi provider làm đúng việc của mình:** Privy lo login và wallet; PillarsHub lưu Genealogy và tính Commission bằng Unilevel plan hiện có; Onyx phát hành vault share và chạy deposit queue, redeem queue; Chatwoot xử lý hội thoại.
+- **Màn hình MLM được tái sử dụng, không build lại.** Duyệt Genealogy, chỉnh Sponsor và placement, cấu hình plan, review bonus, đóng period và release bonus đều làm trong PillarsHub Portal. Builder có các phần thiết yếu ngay trong Helm, cùng một link "Open full back office" mở vào back office của PillarsHub qua single sign-on. Verified (SSO). Helm chỉ build những gì PillarsHub chưa có.
 - **Payout tận dụng cơ chế batch của PillarsHub.** PillarsHub gửi các payout batch đã duyệt đến một merchant endpoint do Helm build; Helm trả USDC từ một multisig treasury do Business kiểm soát và báo kết quả ngược lại. Verified. Không cần payment provider.
 - **Funding trực tiếp bằng crypto** giúp đưa việc onboarding payment provider ra khỏi critical path.
 
@@ -91,7 +92,8 @@ flowchart TB
 | Wallet Funding | Blockchain (chuyển USDC đến address của Member) | Hiển thị address, theo dõi confirmation, screening | Khả thi |
 | Vault Deposit và Redemption | Enzyme Onyx (deposit queue có allowlist, redeem queue, share, public read API) | Màn hình điều khoản, transaction flow, theo dõi status, cập nhật allowlist | Khả thi khi cấu hình; **chưa chạy tiền thật được** cho đến khi có strategy, MLA và ownership |
 | Commission payout đơn giản | PillarsHub (tính real time, bonus release, payout batch đến một custom merchant) | Ghi nhận eligible event, payout executor, treasury proposal, status callback, statement | Khả thi khi cấu hình và có custom work; **bị chặn** cho đến khi cơ sở tính Commission được duyệt |
-| Team view | Dữ liệu tree và bonus của PillarsHub | Direct-team view trong Helm, lọc theo permission | Khả thi |
+| Team view và Builder back office | Back office của PillarsHub (tree, report, chi tiết bonus) qua SSO | Phần thiết yếu trong Helm (referral link, số lượng team, tóm tắt earning, payout) và bước chuyển sang qua SSO | Khả thi |
+| Quản trị MLM | PillarsHub Portal (Genealogy, placement, plan, bonus, đóng period, release) | Deep link theo Member ID; phát hiện thay đổi và reconciliation | Khả thi |
 | Game và Points | Tap Prediction và points service của Cyclone | Liên kết account, event đã verify, hiển thị Points | **Khả thi, chờ** documentation của game API |
 | Support | Chatwoot Cloud (web widget có identity validation) | Widget, ký identity, agent context view trong Helm admin | Khả thi |
 | Vận hành | Dashboard của provider (Onyx Admin App, PillarsHub Portal, Chatwoot) | Helm admin: exception, approval, reconciliation, audit log | Khả thi |
@@ -121,7 +123,7 @@ flowchart LR
 | Privy embedded wallet với gas sponsorship | Server wallet, strategy tự động, policy |
 | Ghi nhận Referral, trạng thái Customer và Builder, toàn bộ Genealogy trong PillarsHub, alpha import | Tự chuyển placement hoặc chuyển hàng loạt; placement window có kiểm soát (GEN-04 đến GEN-06) |
 | **Commission đơn giản:** Unilevel plan ba level hiện có, một eligible event đã duyệt, payout USDC theo batch do Finance duyệt | Rank, quy tắc qualification, matching bonus hoặc leadership bonus, campaign, contest |
-| Direct-team view, referral link, trạng thái thu nhập và statement | Team analytics chuyên sâu, công cụ liên hệ cho leader, CRM |
+| Referral link, số lượng team, tóm tắt earning và payout trong Helm; back office đầy đủ trong PillarsHub qua SSO | Bản Helm tự build của các màn hình PillarsHub; team analytics chuyên sâu, công cụ liên hệ cho leader, CRM |
 | Tap Prediction game hiện có và Points (không có giá trị tiền mặt) | Quy đổi Points thành giá trị, game mới, token |
 | Web chat qua Chatwoot kèm agent context; FAQ và runbook | Support qua Telegram và WhatsApp; AI agent |
 | Sanctions screening cho wallet address; điều kiện quốc gia; điều khoản Member | KYC đầy đủ, trừ khi luật sư yêu cầu (quyết định D6) |
@@ -178,9 +180,9 @@ Những gì thực tế có thể có sau 30 ngày kể từ kickoff, tách theo
 
 | Tuần | Engineering | Business, Finance và counsel |
 |---|---|---|
-| 1 | Access, environment, Privy login và wallet, member và referral model, PillarsHub staging sync, Onyx Sepolia deposit | Quyết định D1–D12; vault strategy và Manager; MLA; alpha records; soạn cơ sở tính Commission; engage counsel |
+| 1 | Access, environment, Privy login và wallet, member và referral model, PillarsHub staging sync, Onyx Sepolia deposit | Quyết định D1–D13; vault strategy và Manager; MLA; alpha records; soạn cơ sở tính Commission; engage counsel |
 | 2 | Thin slice trên testnet; alpha import dry run; event pipeline; payout endpoint và Safe proposal trên testnet | Member và Builder terms; danh sách quốc gia; ký MLA |
-| 3 | Team view, statement, admin approval, screening, support context; release candidate cho preregistration | Câu trả lời của counsel; deploy vault production; duyệt cơ sở tính Commission |
+| 3 | Phần thiết yếu cho Builder và PillarsHub SSO, admin approval, screening, support context; release candidate cho preregistration | Câu trả lời của counsel; deploy vault production; duyệt cơ sở tính Commission |
 | 4 | Preregistration go-live; alpha cutover; kiểm tra load và recovery; fix theo security review; diễn tập tiền thật | Security review; diễn tập vận hành; go/no-go cho pilot có giới hạn |
 
 **Mốc ngày 30 đề xuất chốt tại buổi họp:** *preregistration live, alpha community đã import, Genealogy đã khóa, vault và payout đã chạy đúng trên testnet.* Chạy song song các điều kiện của mức 3 để mở deposit thật ngay khi đủ điều kiện, và duyệt cơ sở tính Commission sớm để payout đầu tiên không bị trễ thêm.
@@ -229,6 +231,7 @@ Những gì thực tế có thể có sau 30 ngày kể từ kickoff, tách theo
 | D10 | Placement window đã hứa trong field call | Không có trong Pilot; công bố policy trước, sau đó mới bật workflow có kiểm soát (GEN-04 đến GEN-06) | Tránh build tính năng chuyển placement trước khi có quy tắc |
 | D11 | Payout treasury và người duyệt | Safe multisig do Business sở hữu; Finance duyệt từng batch; payout chỉ vào Helm wallet của Builder | Kiểm soát payout (PAY-01 đến PAY-04) |
 | D12 | Trạng thái của PillarsHub | Đã chốt theo Business; validate bằng các proof scenario T01–T06 của Terrel trên staging, không phải một lần chọn lại | Đối chiếu cách dùng chữ "candidate" của Terrel với stack đã chốt |
+| D13 | MLM admin và Builder back office | Dùng PillarsHub Portal và back office (SSO) thay vì build trong Helm; Helm chỉ hiển thị phần thiết yếu | Tiết kiệm nhiều tuần làm UI; cần xác nhận cơ chế approval của PillarsHub Portal và cách xử lý SSO token |
 
 # Phần II: Triển khai kỹ thuật {.unnumbered}
 
@@ -247,7 +250,7 @@ Tài liệu *HELM Community Technology Requirements v0.2* của Terrel (ngày 6/
 | Qualification và rank | QUAL-01 đến QUAL-03 | **Bị tắt.** Plan đơn giản không có rank; QUAL-03 chỉ áp dụng khi có cam kết về tiến độ rank | Bảng scope |
 | Earnings audit | AUD-01 đến AUD-03 | **Trong scope.** Giải thích từng khoản earning từ source event đến payout; giữ lại các correction; statement theo period tách hiệu quả vault khỏi earning từ Referral | FR-18, FR-19 |
 | Rewards | REW-01 đến REW-03 | Chỉ Points; không redemption, promotional credit hay quy đổi ra tiền mặt | FR-11; quyết định D7 |
-| Builder back office | BO-01, BO-02, BO-04 | **Trong scope.** Referral link, dữ liệu team được phép xem, trạng thái earning, statement, dispute request; mobile web và ngôn ngữ của release | FR-16, FR-19 |
+| Builder back office | BO-01, BO-02, BO-04 | **Trong scope.** Phần thiết yếu trong Helm (referral link, số lượng team, tóm tắt earning, payout, dispute request); statement chi tiết và tree nằm trong back office của PillarsHub qua SSO; mobile web và ngôn ngữ của release (hành vi trên mobile của back office PillarsHub: TBD) | FR-16, FR-19 |
 | Team visibility | TEAM-01, TEAM-02 | **Trong scope, mức tối thiểu.** Direct team và số lượng; không truy cập được nhánh khác hay balance, trade, support case của bất kỳ ai | FR-16 |
 | Team tool | TEAM-03 đến TEAM-05 | Chỉ có bước welcome cơ bản (TEAM-05 Pilot); search, contact và automation được hoãn | Bảng scope |
 | Campaign | CAMP-01 | **Trong scope.** Attribution qua Referral link, thứ tự ưu tiên và Referral không hợp lệ; CAMP-02 đến CAMP-04 bị tắt | FR-3 |
@@ -304,10 +307,10 @@ Tài liệu *HELM Community Technology Requirements v0.2* của Terrel (ngày 6/
 | FR-13 | Admin và reconciliation | Tách riêng các role view, configure, correct, approve và release (ADM-01); reconciliation hằng ngày cho Genealogy, Wallet Funding, Vault Position, Commission, payout và Points; sai lệch xuất hiện trong exception queue kèm audit trail |
 | FR-14 | Reporting | Định nghĩa riêng cho customer, Builder, deposit, Commission, liability và payout, có hiển thị cutoff và độ mới của dữ liệu, không đếm trùng (BI-01, BI-02) |
 | FR-15 | Status Customer và Builder, preregistration | Các trạng thái prospect, preregistered, verified và enrolled được theo dõi riêng; Builder enrollment là bước tường minh và có version; người ở trạng thái preregistered không được nhận earning (ID-04); capability bị giới hạn sẽ bị chặn theo quốc gia và version của agreement (ID-03, REC-02) |
-| FR-16 | Team view | Builder thấy Referral link, các member trong direct team và số lượng kèm độ mới của dữ liệu; không thấy được nhánh khác hay balance, position, trade hoặc support case của bất kỳ ai (TEAM-01, TEAM-02, BO-01) |
+| FR-16 | Team view | Builder thấy Referral link và số lượng direct team kèm độ mới của dữ liệu trong Helm, và mở back office của PillarsHub qua SSO để xem tree và report; cả hai view đều không để lộ nhánh khác hay balance, position, trade hoặc support case của bất kỳ ai (TEAM-01, TEAM-02, BO-01; cần xác nhận visibility setting của PillarsHub) |
 | FR-17 | Post eligible event để tính Commission | Chỉ eligible event type đã được duyệt mới được post, sau khi confirmed on-chain, kèm external ID ổn định; replay chỉ tạo một obligation; reversal tạo một adjustment truy vết được (COMP-01, COMP-02) |
 | FR-18 | Payout đơn giản | Bonus đã release được gửi về dưới dạng batch của PillarsHub tới merchant endpoint của Helm; Finance duyệt; Helm chỉ propose treasury transaction tới chính Helm wallet của Builder; mỗi payment được báo lại là Success, Failure hoặc Pending kèm transaction reference; một lần timeout và retry chỉ tạo ra một payment hoặc một exception tường minh (PAY-01 đến PAY-03, T06) |
-| FR-19 | Earnings statement và dispute | Builder thấy các khoản calculated, pending, held, payable và paid kèm lý do (COMP-03); statement theo period tách hiệu quả vault khỏi earning từ Referral (AUD-03); dispute request mang theo earning ID (BO-02) |
+| FR-19 | Earnings statement và dispute | Builder thấy tóm tắt earning và payout trong Helm, còn statement bonus chi tiết nằm trong back office của PillarsHub; các trạng thái hiển thị gồm calculated, pending, held, payable và paid kèm lý do (COMP-03); statement theo period tách hiệu quả vault khỏi earning từ Referral (AUD-03); dispute request mang theo earning ID (BO-02) |
 | FR-20 | Import alpha community | Alpha member được import theo thứ tự Sponsor trước, giữ ngày gốc và provenance "import"; số lượng và edge khớp khi reconcile; exception được giải quyết hoặc được duyệt; rollback đã được diễn tập (GEN-03, IMP-02, T01) |
 
 ## Operational requirements
@@ -364,7 +367,8 @@ flowchart TB
 | Integration worker | Outbox job tới PillarsHub, game service, screening và allowlist; retry và dead letter | Không provider nào có idempotency key cho tất cả các call |
 | Chain indexer | Index các USDC transfer vào wallet của Member cùng các event queue, share và valuation của Onyx ở confirmation depth | Webhook production của Privy cần gói Enterprise; Onyx không có webhook. Verified |
 | Reconciliation | Check hằng ngày với chain, Onyx API, tree của PillarsHub và Points | Dữ liệu provider có thể bị lệch; phải chứng minh được |
-| Admin console và approval | Exception, screening case, trạng thái allowlist, Sponsor correction, import exception, review payout batch và hold, tất cả đều có maker-checker | Workflow approval (ADM-02) trải qua nhiều provider |
+| Admin console và approval | Chỉ dữ liệu do Helm sở hữu: exception, screening case, trạng thái allowlist, import exception, thực thi payout và hold, có maker-checker; deep link sang PillarsHub Portal cho Genealogy, plan, bonus và release | PillarsHub Portal lo phần quản trị MLM; Helm lo identity, wallet và dòng tiền |
+| PillarsHub Portal và back office (tái sử dụng) | Duyệt Genealogy, chỉnh Sponsor và placement, plan, bonus, đóng period, release, report MLM; Builder back office qua SSO | Không tự build: tái sử dụng để tiết kiệm thời gian build |
 | Payout executor | Nhận payout batch của PillarsHub tại một custom merchant endpoint; validate callback token; check payee và hold; propose USDC transfer tới treasury multisig; báo Success, Failure hoặc Pending cho từng payment | PillarsHub tính toán và release nhưng không chuyển crypto; không có payment provider nào trong scope |
 | Alpha import tool | Load alpha member theo thứ tự Sponsor trước, reconcile số lượng và edge, báo cáo exception, hỗ trợ rollback | PillarsHub không có bulk import API. Verified |
 
@@ -562,7 +566,7 @@ Chỉ thu thập dữ liệu có mục đích rõ ràng. Không ghi dữ liệu 
 - **Self-referral:** bị từ chối ngay lúc capture (cùng member, cùng wallet, cùng email hoặc số điện thoại đã verify).
 - **Sponsor không hợp lệ hoặc bị thiếu:** gắn vào root account của công ty với provenance "no sponsor" và flag để review (quyết định D8).
 - **Cycle và trùng lặp:** không thể xảy ra với Member mới; được check ở mỗi lần correction và import (GEN-02).
-- **Đổi Sponsor và placement:** không bao giờ cho self-service trong Pilot. Chỉ admin được làm, kèm lý do, consent reference, approval thứ hai và audit entry, sau đó update node hoặc placement trong PillarsHub và read-back. Placement window có quản lý (preview, consent, deadline, notification; GEN-04 đến GEN-06) chỉ được bật sau khi policy được duyệt (quyết định D10). Customer movement giữ ở trạng thái tắt trong tree của PillarsHub để hai hệ thống không bị lệch nhau.
+- **Đổi Sponsor và placement:** không bao giờ cho self-service trong Pilot. Admin được ủy quyền thực hiện trong PillarsHub Portal, với lý do và consent reference được ghi vào một case trong Helm. Helm phát hiện mọi thay đổi qua webhook `Node/Updated` và reconciliation hằng đêm, và mở case cho bất kỳ thay đổi nào không có request đã duyệt. Chưa verify được bản thân Portal có bắt buộc người duyệt thứ hai và lưu audit log hay không; nếu không, approval được ghi trong Helm trước khi sửa trên Portal (ADM-02). Placement window có quản lý (preview, consent, deadline, notification; GEN-04 đến GEN-06) chỉ được bật sau khi policy được duyệt (quyết định D10). Customer movement giữ ở trạng thái tắt trong tree của PillarsHub để hai hệ thống không bị lệch nhau.
 - **Merge account:** là quy trình admin; giữ edge được accept sớm nhất; trỏ lại các child edge kèm audit entry; retire identity bị trùng (ADM-04).
 - **Import alpha community:** import Sponsor trước rồi mới đến cấp dưới, giữ ngày signup gốc và provenance "import"; không có bulk API nên phải import từng record. Verified. Reconcile số lượng và edge, giải quyết hoặc duyệt mọi exception, và diễn tập rollback trước khi cutover (GEN-03, IMP-02).
 
@@ -590,12 +594,12 @@ Chỉ thu thập dữ liệu có mục đích rõ ràng. Không ghi dữ liệu 
 |---|---|---|
 | **Bắt đầu ngay** | App shell; Privy login và embedded wallet; member DB với các trạng thái Customer và Builder; capture và validate Referral; sync PillarsHub trên staging có read-back; alpha import tool trên dữ liệu mẫu; event pipeline và source posting (chỉ trên staging); payout merchant endpoint và Safe proposal trên testnet; chain indexer; deposit và redemption qua Onyx trên Sepolia; Chatwoot widget; admin skeleton có role; screening hook; CI, các môi trường, secret | Quyền truy cập test của provider; dữ liệu mẫu của alpha |
 | **Thin slice (tuần 1–3)** | Demo end-to-end trên test network: signup → Referral → deposit → Commission thử → payout batch thử → Redemption; một flow game sang Points | Tài liệu game API |
-| **Trước khi nhận tiền thật và chi trả payout** | Vault terms và disclosure; tự động hóa allowlist; team view và statement; Builder enrollment và terms; approval, hold và reporting cho payout; diễn tập và reconciliation cho alpha import; support agent view, FAQ và runbook; reconciliation job và alert; eligibility theo quốc gia; môi trường production; load test và recovery test; fix các finding từ security review; diễn tập vận hành | Strategy, MLA, ownership, Commission basis, câu trả lời từ legal |
+| **Trước khi nhận tiền thật và chi trả payout** | Vault terms và disclosure; tự động hóa allowlist; phần thiết yếu cho Builder và bước chuyển sang PillarsHub qua SSO; Builder enrollment và terms; approval, hold và reporting cho payout; diễn tập và reconciliation cho alpha import; support agent view, FAQ và runbook; reconciliation job và alert; eligibility theo quốc gia; môi trường production; load test và recovery test; fix các finding từ security review; diễn tập vận hành | Strategy, MLA, ownership, Commission basis, câu trả lời từ legal |
 | **Có thể hoãn (bị tắt)** | Placement window có quản lý; rank và qualification; campaign; top-up tích hợp; thêm chain và asset; Telegram và WhatsApp; transaction monitoring thương mại; native mobile | Nhu cầu của Business và rule đã được duyệt |
 
 ## Critical path
 
-1. Các quyết định D1–D12 trong buổi họp.
+1. Các quyết định D1–D13 trong buổi họp.
 2. **Vault sẵn sàng:** strategy và Manager → cấu hình vault (asset, async queue, external allowlist, share không chuyển nhượng được, fee) → ký MLA → deploy production → bàn giao ownership cho multisig của Business.
 3. **Commission basis và proof cho plan:** eligible event, rate, period và hold được duyệt → cấu hình PillarsHub → khớp với kết quả kỳ vọng của Finance (T02).
 4. **Dữ liệu alpha:** nhận record → dry run → reconciliation → exception được duyệt → diễn tập cutover (T01).
@@ -631,6 +635,7 @@ Tất cả điều kiện phải đạt; không bỏ qua điều kiện nào ch�
 - **Rủi ro upgrade.** Global owner của Enzyme có thể upgrade toàn bộ vault contract; báo cáo audit mô tả role này có thể "fully drain the system", và không thấy timelock nào. Verified. MLA phải quy định về thông báo trước và governance.
 - **Gas sponsorship.** Gas sponsorship native của Privy upgrade wallet của Member bằng EIP-7702; delegation contract thuộc phạm vi security review. Verified.
 - **Webhook PillarsHub không có chữ ký.** Chỉ coi là tín hiệu và fetch lại qua API. Verified.
+- **PillarsHub SSO.** Backend của Helm mint một PillarsHub user token và mở back office với token nằm trong URL query string. Verified. Token trong URL có thể bị lộ qua browser history và log; cần xác nhận với PillarsHub về thời hạn token và việc chỉ dùng một lần, và mở back office trong tab mới, không gửi referrer header.
 - **Payout callback.** PillarsHub xác thực payout batch bằng một callback token, và Helm validate token này với token endpoint của PillarsHub trước khi xử lý. Verified. Payout executor không giữ signing key nào; nó chỉ propose Safe transaction.
 - **Tách biệt test và production** cho mọi provider, với credential riêng và không có production key trên máy developer.
 
@@ -718,6 +723,8 @@ Ghi chú chi tiết kèm mọi nguồn và trích dẫn nằm trong `work/notes/
 10. Custom money-out merchant: batch có mang được custom currency code như USDC không; cơ chế retry khi Helm báo Pending; Failure được re-release thế nào; giới hạn cho mỗi payment?
 11. Unilevel plan ba tầng trên staging của Helm có cấu hình được với rate, period, hold và mức tối thiểu của Finance không, và ai là người thay đổi (plan ở chế độ read-only qua API)?
 12. Customer type hoặc status để phân biệt Customer với Builder, và cho người ở trạng thái preregistered không được nhận earning.
+13. Portal có hỗ trợ approval theo role (người duyệt thứ hai) và audit log cho việc đổi Sponsor và placement, sửa bonus và release không?
+14. SSO user token: thời hạn, chỉ dùng một lần, và có cách exchange qua POST hoặc token ngắn hạn thay vì đặt token trong URL không? Có giới hạn được visibility của back office để Builder không bao giờ thấy nhánh khác hay balance không, và back office hoạt động thế nào trên mobile?
 
 **Privy**
 
