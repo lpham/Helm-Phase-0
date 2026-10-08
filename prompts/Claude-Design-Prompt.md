@@ -4,7 +4,7 @@ Copy everything after the `---` separator into Claude (a design or prototyping s
 
 **Inputs to confirm before running:**
 
-- Brand: [no brand guide supplied → restrained fintech style, neutral palette, one accent colour; product name "Helm"].
+- Brand: [no brand guide or existing assets → create a working identity for "Helm" (project and working product name) as described in "Brand basics"].
 - UI language: [English for the Pilot; layouts must tolerate Vietnamese text length].
 - Network and asset: [USDC on Arbitrum One] (decision D1).
 - Redemption service target shown to Members: [e.g. "usually within 5 business days, subject to liquidity"] (decision D4).
@@ -25,6 +25,17 @@ PillarsHub is a specialist MLM platform with its own admin Portal and Builder ba
 - **Builders:** Helm shows the essentials (referral link, direct team counts, earnings summary and payouts to wallet). A secondary action **"Open full back office"** opens PillarsHub's back office through single sign-on (Helm's backend mints a PillarsHub user token; PillarsHub opens `app.pillarshub.com?token=…`). Design the hand-off moment: explanation, new tab, returning to Helm.
 - **Admins:** genealogy browsing, Sponsor and placement edits, plan configuration, bonus review, period close and bonus release are done in the **PillarsHub Portal**. Helm admin links to it (deep link by Member ID) and shows only Helm-owned data.
 - If time is short, any Builder screen beyond the essentials above can be replaced by the back-office link without blocking launch.
+
+## Brand basics (working identity)
+
+No brand assets exist. "Helm" is the project name and the working product name; the final name may change. Create a **working identity** that can be swapped later by replacing the wordmark and tokens, without redesigning screens.
+
+- **Logo:** 2–3 directions for "Helm", each a wordmark plus a simple symbol, with a one-line rationale. Show each on light and dark backgrounds, at small sizes (24 px) and in a single colour.
+- **App icon and favicon** for the chosen direction (recommend one).
+- **Colour:** one primary, one accent, neutrals, and status colours (success, pending, warning, error, info) that meet WCAG AA contrast; deliver them as design tokens used by every screen.
+- **Typography:** one free web font family (for example from Google Fonts) with a clear numeric style for amounts; type scale as tokens.
+- **Tone:** trustworthy, clear, community-minded. Avoid flashy crypto styling: no neon gradients, coins, rockets, rising charts or anything that suggests returns.
+- Mark everything as "working identity — Pilot" so it is not mistaken for an approved brand.
 
 ## Users
 
@@ -85,7 +96,7 @@ Only Helm-owned data. Each Member and batch screen has an **"Open in PillarsHub 
 
 ## Deliverables
 
-1. A small design system: colour and type tokens, spacing, status chips, cards, list rows, buttons, inputs, banners, stepper for multi-step flows, transaction row with link.
+1. The working identity (logo directions, recommended mark, app icon, favicon) and a small design system: colour and type tokens, spacing, status chips, cards, list rows, buttons, inputs, banners, stepper for multi-step flows, transaction row with link.
 2. The screens above at mobile and desktop sizes, with key states.
 3. Clickable prototype flows: (a) invite → signup → preregistration; (b) add funds → vault deposit → executed position; (c) Redemption to paid; (d) Builder earnings → payout paid → dispute, including the "Open full back office" hand-off; (e) admin payout execution after release in PillarsHub.
 4. A short list of open content questions for Business and counsel.
