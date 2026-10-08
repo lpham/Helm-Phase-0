@@ -1,0 +1,4 @@
+.DS_Store
+outputs/figures/*.png
+outputs/.build.typ
+outputs/.conf.typ
